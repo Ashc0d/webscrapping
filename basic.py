@@ -1,5 +1,5 @@
 import requests
-import time
+import config
 from bs4 import BeautifulSoup
 
 
@@ -9,8 +9,8 @@ headers = {
 }
 
 login_data = {
-    'txtUserName':	'',
-    'txtPassword':	'',
+    'txtUserName':	config.username,
+    'txtPassword':	config.passwd,
     'hdnloginwith':	'username',
     'save':	'LogIn'
 }
@@ -18,7 +18,7 @@ login_data = {
 def login():
     with requests.session() as rs:
 
-        url = ''
+        url = config.url
         #home_url = ''
         req = rs.get(url, headers=headers)
         soup = BeautifulSoup(req.content, 'html.parser')
