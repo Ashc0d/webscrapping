@@ -10,7 +10,7 @@ headers = {
 
 login_data = {
     'txtUserName':	'',
-    'txtPassword':	' ',
+    'txtPassword':	'',
     'hdnloginwith':	'username',
     'save':	'LogIn'
 }
@@ -20,7 +20,7 @@ def login():
 
         url = ''
         #home_url = ''
-        req = rs.get(home_url, headers=headers)
+        req = rs.get(url, headers=headers)
         soup = BeautifulSoup(req.content, 'html.parser')
 
 
@@ -31,7 +31,7 @@ def login():
         login_data['__EVENTVALIDATION'] = soup.find('input', attrs={'id': '__EVENTVALIDATION'})['value']
 
 
-        req = rs.post(home_url, data = login_data, headers=headers)
+        req = rs.post(url, data = login_data, headers=headers)
         soup = BeautifulSoup(req.content, 'html.parser')
         history = req.history
         status_code = req.status_code
